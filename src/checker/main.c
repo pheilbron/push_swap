@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 13:57:45 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/09/08 14:53:24 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/09/10 18:00:42 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ int	main(int ac, char **av)
 	c = init_ps_context;
 	if (ac > 1)
 	{
-		if (init_stack(c->a, av + 1, ac - 1))
+		parse_options(c, &av, ac);
+		if (init_stack(c->a, av, ac))
 		{
+			if (c->options)
+			parse_commands(c);
 			while (get_next_line(1, buffer))
 			{
 				last_command = parse_commands(c, buffer);

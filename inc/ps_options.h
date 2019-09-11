@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_context.h                                       :+:      :+:    :+:   */
+/*   ps_options.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/08 14:09:08 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/09/10 18:01:07 by pheilbro         ###   ########.fr       */
+/*   Created: 2019/09/10 18:01:20 by pheilbro          #+#    #+#             */
+/*   Updated: 2019/09/10 18:05:59 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PS_CONTEXT_H
-# define PS_CONTEXT_H
+#ifndef PS_OPTIONS_H
+# define PS_OPTIONS_H
 
-typedef struct	s_ps_context
+# define _V
+# define _C
+# define _I
+# define _O
+
+typedef struct	s_ps_option
 {
-	uint8_t	options;
-	t_stack	*a;
-	t_stack	*b;
-	t_stack	*commands;
-}				t_ps_context;
+	uint8_t	flag;
+	char	op;
+	char	*long_op;
+}				t_ps_option;
+
+extern t_ps_option	g_option_tab[];
 
 #endif
