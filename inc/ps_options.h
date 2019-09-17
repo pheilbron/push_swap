@@ -13,10 +13,10 @@
 #ifndef PS_OPTIONS_H
 # define PS_OPTIONS_H
 
-# define _V
-# define _C
-# define _I
-# define _O
+# define _V 1
+# define _C 2
+# define _I 4
+# define _O 8
 
 typedef struct	s_ps_option
 {

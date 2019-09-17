@@ -10,7 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= push_swap
+PUSH_SWAP	= push_swap
+CHECKER		= checker
 
 CC			= gcc
 LIB			= -L../libft -lft
@@ -20,22 +21,36 @@ DEBUG_FLAGS	= -g -fsanitize=address
 
 SRC_DIR		= src
 OBJ_DIR		= obj
+UTIL_DIR	= utils
+PS_DIR		= push_swap
+C_DIR		= checker
 
-SRC			= main
-OBJ			= $(patsubst %, $(OBJ_DIR)/%.o, $(SRC))
+PS_SRC		= main
+PS_OBJ		= $(patsubst %, $(OBJ_DIR)/%.o,
+		$(patsubst %, $(PS_DIR)%, $(PS_SRC)))
 
+C_SRC		= main
+C_OBJ		= $(patsubst %, $(OBJ_DIR)%.o,
+		$(patsubst %, $(C_DIR)%, $(C_SRC)))
 
-all: $(NAME)
+UTIL_SRC	= push rotate reverse_rotate swap
+UTIL_OBJ	= $(patsubst %, $(OBJ_DIR)%.o,
+		$(patsubst %, $(UTIL_DIR)%, $(UTIL_SRC)))
 
-$(NAME): $(OBJ) ../libft/libft.a
+all: $(CHECKER) $(PUSH_SWAP)
+
+$(CHECKER): $(C_OBJ) $(UTIL_OBJ) ../libft/libft.a
 	@$(CC) $(CFLAGS) $(LIB) -o $@ $^
+
+$(PUSH_SWAP): $(PS_OBJ) $(UTIL_OBJ) ../libft/libft.a
+	$(CC) $(CFLAGS) $(LIB) -o $@ $^
 
 ../libft/libft.a:
 	@make -sC libft
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c 
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(INC_FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC_FLAGS) -c $< -o $@
 
 debug: 
 	$(CC) $(FLAGS) $(DEBUG_FLAGS) $(INC_FLAGS) src/*.c ../libft/src/*/*.c \
