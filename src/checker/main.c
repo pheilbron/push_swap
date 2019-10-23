@@ -17,6 +17,7 @@ int	main(int ac, char **av)
 {
 	t_ps_context	*c;
 	int				last_command;
+	char			*buffer;
 
 	c = init_ps_context;
 	if (ac > 1)
