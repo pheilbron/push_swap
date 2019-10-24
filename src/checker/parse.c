@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 13:52:11 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/23 22:05:15 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/24 13:17:29 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	set_ps_long_option(t_ps_context *c, char *option)
 	return (c->e.no = INV_LONG_OPTION);
 }
 
-int	parse_options(t_ps_context *c, char ***data, int *len)
+int			parse_options(t_ps_context *c, char ***data, int *len)
 {
 	int	data_i;
 
@@ -79,6 +79,6 @@ int	parse_options(t_ps_context *c, char ***data, int *len)
 	return (c->e.no = 1);
 }
 
-int	parse_commands(t_ps_context *c, char *data)
+int			parse_commands(t_ps_context *c, char *data)
 {
 

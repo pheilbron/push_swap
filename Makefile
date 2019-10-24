@@ -6,7 +6,7 @@
 #    By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/29 17:20:30 by pheilbro          #+#    #+#              #
-#    Updated: 2019/09/07 14:15:52 by pheilbro         ###   ########.fr        #
+#    Updated: 2019/10/24 12:35:42 by pheilbro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ UTIL_DIR	= utils
 PS_DIR		= push_swap
 C_DIR		= checker
 
-PS_SRC		= main
+PS_SRC		= main init parse check print
 PS_OBJ		= $(patsubst %, $(OBJ_DIR)/%.o,
 		$(patsubst %, $(PS_DIR)%, $(PS_SRC)))
 

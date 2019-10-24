@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 21:20:35 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/23 21:20:50 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/24 13:14:59 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_ctype.h"
 #include "ft_stack.h"
 
-int	is_valid_arg(char *s)
+static int	is_valid_arg(char *s)
 {
 	int			i;
 	long long	num;
@@ -32,7 +32,7 @@ int	is_valid_arg(char *s)
 	return (num);
 }
 
-int	is_valid_args(char *s)
+static int	is_valid_args(char *s)
 {
 	char	**tab;
 	int		i;
@@ -52,7 +52,7 @@ int	is_valid_args(char *s)
 }
 
 
-int	init_stack(t_stack *a, char **data, int len)
+int			init_stack(t_stack *a, char **data, int len)
 {
 	int	i;
 	int	n;

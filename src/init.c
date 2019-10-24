@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 20:08:10 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/24 13:17:05 by pheilbro         ###   ########.fr       */
+/*   Created: 2019/10/24 13:34:39 by pheilbro          #+#    #+#             */
+/*   Updated: 2019/10/24 14:12:38 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
-#include "ps_options.h"
-#include "ft_stack.h"
-#include "ft_node.h"
+#include "ps_context.h"
 
-int	check_stacks(t_ps_context *c)
+t_ps_context	*init_ps_context(void)
 {
-	t_dl_node	*cur;
-	t_dl_node	*prev;
+	t_ps_context	*ret;
 
-	prev = c->a->top;
-	while ((cur = ft_stack_get_next(c->a->top)))
-	{
-		if ((int)cur->content > (int)prev->content)
-			return (0);
-		prev = cur;
-		cur = ft_stack_get_next(cur);
-	}
-	if (ft_stack_is_empty(c->b))
-		return (SORTED);
-	return (0);
+	ret->a = NULL;
+	ret->b = NULL;
+	ret->commands = NULL;
+	if (!(ret = malloc(sizeof(*ret))))
+		return (NULL);
+	if (!(ret->a = ft_stack_init()))
+		return (free_ps_context(ret));
+	if (!(ret->b = ft_stack_init()))
+		return (free_ps_context(ret));
+	if (!(ret->commands = ft_stack_init()))
+		return (free_ps_context(ret));
+	return (ret);
 }
