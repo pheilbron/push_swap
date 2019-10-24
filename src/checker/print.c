@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 14:10:00 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/09/08 14:53:24 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/23 20:07:59 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	print_status(uint8_t status)
 {
-	if ((options & SORTED) == SORTED)
+	if ((status & SORTED) == SORTED)
 		ft_printf("OK");
 	else
 		ft_printf("KO");

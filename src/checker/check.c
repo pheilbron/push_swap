@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_options.h                                       :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 18:01:20 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/23 22:05:49 by pheilbro         ###   ########.fr       */
+/*   Created: 2019/10/23 20:08:10 by pheilbro          #+#    #+#             */
+/*   Updated: 2019/10/23 21:20:05 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PS_OPTIONS_H
-# define PS_OPTIONS_H
-
-# define _C 1
-# define _D 2
-# define _I 4
-# define _O 8
-# define _V 16
-# define SLOW 18
-
-# define SORTED 32
-
-typedef struct	s_ps_option
+int	check_stacks(t_ps_context *c)
 {
-	uint8_t	flag;
-	char	op;
-	char	*long_op;
-}				t_ps_option;
+	t_dl_node	*cur;
+	t_dl_node	*prev;
 
-extern t_ps_option	g_option_tab[];
-
-#endif
+	prev = c->a->top;
+	while ((cur = ft_stack_get_next(c->a->top)))
+	{
+		if ((int)cur->content > (int)prev->content)
+			return (0);
+		prev = cur;
+		cur = ft_stack_get_next(cur);
+	}
+	if (ft_stack_is_empty(c->b))
+		return (SORTED);
+	return (0);
+}
