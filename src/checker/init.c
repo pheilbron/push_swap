@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 21:20:35 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/24 20:18:15 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/25 15:16:16 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	is_valid_args(t_stack *a, char *s)
 	free_tab(tab);
 	return (1);
 }
-
+#include <stdio.h>
 int			init_stack(t_stack *a, char **data, int len)
 {
 	int	i;
@@ -66,9 +66,16 @@ int			init_stack(t_stack *a, char **data, int len)
 	while (i < len)
 	{
 		if ((n = is_valid_arg(data[i])))
-			ft_stack_enqueue(a, &n);
+			ft_stack_enqueue(a, (void *)n);
 		else
 			return (INV_ARG);
+		t_dl_node	*n;
+		n = a->top;
+		while (n)
+		{
+			printf("%d\n", *(int *)n->content);
+			n = ft_stack_get_next(n);
+		}
 		i++;
 	}
 	return (1);

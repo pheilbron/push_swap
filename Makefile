@@ -6,7 +6,7 @@
 #    By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/29 17:20:30 by pheilbro          #+#    #+#              #
-#    Updated: 2019/10/24 20:35:40 by pheilbro         ###   ########.fr        #
+#    Updated: 2019/10/25 14:08:41 by pheilbro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ PS_DIR		= push_swap
 C_DIR		= checker
 
 SRC			= clean init
-OBJ			= $(patsubst %, $(SRC_DIR)/%.o, $(SRC))
+OBJ			= $(patsubst %, $(OBJ_DIR)/%.o, $(SRC))
 
 PS_SRC		= main
 PS_OBJ		= $(patsubst %, $(OBJ_DIR)/%.o, \
@@ -55,6 +55,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INC_FLAGS) -c $< -o $@
 
+debug_checker: 
+	@$(CC) $(FLAGS) $(DEBUG_FLAGS) $(INC_FLAGS) src/*.c src/checker/*.c src/utils/*.c \
+		../libft/src/*/*.c ../libft/src/rbtree/utils/*.c \
+		../libft/src/stdio/ft_printf/*.c ../libft/src/stdio/ft_printf/*/*.c
 debug: 
 	$(CC) $(FLAGS) $(DEBUG_FLAGS) $(INC_FLAGS) src/*.c ../libft/src/*/*.c \
 		../libft/src/stdio/ft_printf/*.c ../libft/src/stdio/ft_printf/*/*.c
@@ -69,6 +73,6 @@ clean_debug:
 
 fclean: clean clean_debug
 	#make fclean -C lib/
-	rm -f $(NAME)
+	rm -f $(PUSH_SWAP) $(CHECKER)
 
 re: fclean all

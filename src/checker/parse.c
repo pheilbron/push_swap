@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 13:52:11 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/24 20:29:12 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/25 13:41:51 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			parse_options(t_ps_context *c, char ***data, int *len)
 {
 	int	data_i;
 
-	while (len > 0 && (**data)[0] == '-')
+	while (--(*len) > 0 && (*(++(*data)))[0] == '-')
 	{
 		data_i = 1;
 		if ((**data)[data_i] && (**data)[data_i] == '-')
@@ -76,8 +76,6 @@ int			parse_options(t_ps_context *c, char ***data, int *len)
 		while ((**data)[data_i])
 			if (set_ps_option(c, (**data)[data_i++]) < 0)
 				return (c->e.no);
-		(**data)++;
-		len--;
 	}
 	return (c->e.no = 1);
 }
