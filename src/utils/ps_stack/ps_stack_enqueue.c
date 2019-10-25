@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   ps_stack_enqueue.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 20:08:10 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/25 15:51:31 by pheilbro         ###   ########.fr       */
+/*   Created: 2019/10/25 15:44:51 by pheilbro          #+#    #+#             */
+/*   Updated: 2019/10/25 15:52:37 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
-#include "ps_options.h"
+#include <stdlib.h>
 #include "ps_stack.h"
-#include "ft_node.h"
 
-int	check_stacks(t_ps_context *c)
+void	ps_stack_enqueue(t_ps_stack *stack, int content)
 {
-	t_ps_node	*cur;
-	t_ps_node	*prev;
+	t_ps_node	*new;
 
-	prev = c->a->top;
-	while ((cur = ps_stack_get_next(c->a->top)))
+	if ((new = malloc(sizeof(*new))))
 	{
-		if (cur->content > prev->content)
-			return (0);
-		prev = cur;
-		cur = ps_stack_get_next(cur);
+		new->content = content;
+		new->next = NULL;
+		if (ps_stack_is_empty(stack))
+		{
+			stack->top = new;
+			new->prev = NULL;
+		}
+		else
+		{
+			stack->bottom->next = new;
+			new->prev = stack->bottom;
+		}
+		stack->bottom = new;
 	}
-	if (ps_stack_is_empty(c->b))
-		return (SORTED);
-	return (0);
 }

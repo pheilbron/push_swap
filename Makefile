@@ -6,7 +6,7 @@
 #    By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/29 17:20:30 by pheilbro          #+#    #+#              #
-#    Updated: 2019/10/25 14:08:41 by pheilbro         ###   ########.fr        #
+#    Updated: 2019/10/25 15:50:12 by pheilbro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,14 @@ C_SRC		= check init main parse print update
 C_OBJ		= $(patsubst %, $(OBJ_DIR)/%.o, \
 			  $(patsubst %, $(C_DIR)/%, $(C_SRC)))
 
-UTIL_SRC	= push rotate reverse_rotate swap
+UTIL_SRC	= push rotate reverse_rotate swap \
+PS_STACK	= ps_stack_init ps_stack_is_empty ps_stack_enqueue \
+			  ps_stack_pop ps_stack_peek ps_stack_push ps_stack_get_next \
+			  ps_stack_del ps_stack_drop ps_stack_get_prev
 UTIL_OBJ	= $(patsubst %, $(OBJ_DIR)/%.o, \
-			  $(patsubst %, $(UTIL_DIR)/%, $(UTIL_SRC)))
+			  $(patsubst %, $(UTIL_DIR)/%, \
+			  $(patsubst %, ps_stack/%, $(PS_STACK)) \
+			  $(UTIL_SRC)))
 
 all: $(CHECKER) $(PUSH_SWAP)
 

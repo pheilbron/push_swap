@@ -6,17 +6,17 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 21:20:35 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/25 15:16:16 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/25 15:54:16 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "ps_context.h"
 #include "ps_options.h"
+#include "ps_stack.h"
 #include "ft_stdlib.h"
 #include "ft_string.h"
 #include "ft_ctype.h"
-#include "ft_stack.h"
 
 static int	is_valid_arg(char *s)
 {
@@ -46,7 +46,7 @@ static int	is_valid_args(t_stack *a, char *s)
 	while (tab[i])
 	{
 		if ((n = is_valid_arg(tab[i])))
-			ft_stack_enqueue(a, &n);
+			ft_stack_enqueue(a, n);
 		else
 			return (free_tab(tab));
 		i++;

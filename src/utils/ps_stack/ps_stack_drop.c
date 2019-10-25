@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   ps_stack_drop.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 20:08:10 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/25 15:51:31 by pheilbro         ###   ########.fr       */
+/*   Created: 2019/10/25 15:43:29 by pheilbro          #+#    #+#             */
+/*   Updated: 2019/10/25 15:54:08 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
-#include "ps_options.h"
+#include <stdlib.h>
 #include "ps_stack.h"
-#include "ft_node.h"
 
-int	check_stacks(t_ps_context *c)
+int	ps_stack_drop(t_ps_stack *stack)
 {
-	t_ps_node	*cur;
-	t_ps_node	*prev;
+	t_ps_node	*temp;
+	void		*content;
 
-	prev = c->a->top;
-	while ((cur = ps_stack_get_next(c->a->top)))
-	{
-		if (cur->content > prev->content)
-			return (0);
-		prev = cur;
-		cur = ps_stack_get_next(cur);
-	}
-	if (ps_stack_is_empty(c->b))
-		return (SORTED);
-	return (0);
+	if (ps_stack_is_empty(stack))
+		return (NULL);
+	content = stack->bottom->content;
+	temp = stack->bottom;
+	stack->bottom = temp->prev;
+	if (!(stack->bottom))
+		stack->top = NULL;
+	free(temp);
+	return (content);
 }
