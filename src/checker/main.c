@@ -6,14 +6,16 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 13:57:45 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/24 14:15:23 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:21:46 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "ps_context.h"
+#include "ps_options.h"
 #include "ft_stdio.h"
 #include "ft_stdlib.h"
+#include "ft_printf.h"
 
 int	main(int ac, char **av)
 {

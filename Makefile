@@ -6,7 +6,7 @@
 #    By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/29 17:20:30 by pheilbro          #+#    #+#              #
-#    Updated: 2019/10/24 12:35:42 by pheilbro         ###   ########.fr        #
+#    Updated: 2019/10/24 20:35:40 by pheilbro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,24 +25,27 @@ UTIL_DIR	= utils
 PS_DIR		= push_swap
 C_DIR		= checker
 
-PS_SRC		= main init parse check print
-PS_OBJ		= $(patsubst %, $(OBJ_DIR)/%.o,
-		$(patsubst %, $(PS_DIR)%, $(PS_SRC)))
+SRC			= clean init
+OBJ			= $(patsubst %, $(SRC_DIR)/%.o, $(SRC))
 
-C_SRC		= main
-C_OBJ		= $(patsubst %, $(OBJ_DIR)%.o,
-		$(patsubst %, $(C_DIR)%, $(C_SRC)))
+PS_SRC		= main
+PS_OBJ		= $(patsubst %, $(OBJ_DIR)/%.o, \
+			  $(patsubst %, $(PS_DIR)/%, $(PS_SRC)))
+
+C_SRC		= check init main parse print update
+C_OBJ		= $(patsubst %, $(OBJ_DIR)/%.o, \
+			  $(patsubst %, $(C_DIR)/%, $(C_SRC)))
 
 UTIL_SRC	= push rotate reverse_rotate swap
-UTIL_OBJ	= $(patsubst %, $(OBJ_DIR)%.o,
-		$(patsubst %, $(UTIL_DIR)%, $(UTIL_SRC)))
+UTIL_OBJ	= $(patsubst %, $(OBJ_DIR)/%.o, \
+			  $(patsubst %, $(UTIL_DIR)/%, $(UTIL_SRC)))
 
 all: $(CHECKER) $(PUSH_SWAP)
 
-$(CHECKER): $(C_OBJ) $(UTIL_OBJ) ../libft/libft.a
+$(CHECKER): $(C_OBJ) $(UTIL_OBJ) $(OBJ) ../libft/libft.a
 	@$(CC) $(CFLAGS) $(LIB) -o $@ $^
 
-$(PUSH_SWAP): $(PS_OBJ) $(UTIL_OBJ) ../libft/libft.a
+$(PUSH_SWAP): $(PS_OBJ) $(UTIL_OBJ) $(OBJ) ../libft/libft.a
 	$(CC) $(CFLAGS) $(LIB) -o $@ $^
 
 ../libft/libft.a:

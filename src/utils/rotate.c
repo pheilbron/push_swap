@@ -6,17 +6,20 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 13:42:58 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/09/08 13:45:20 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:38:09 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "utils.h"
+#include "ft_stack.h"
+
 void	ra(t_stack *a)
 {
-	int	a_top;
+	void	*a_top;
 
 	if (a->size > 1)
 	{
-		a_top = (int)ft_stack_pop(a);
+		a_top = ft_stack_pop(a);
 		if (a_top)
 			ft_stack_enqueue(a, a_top);
 	}
@@ -24,11 +27,11 @@ void	ra(t_stack *a)
 
 void	rb(t_stack *b)
 {
-	int	b_top;
+	void	*b_top;
 
 	if (b->size > 1)
 	{
-		b_top = (int)ft_stack_pop(b);
+		b_top = ft_stack_pop(b);
 		if (b_top)
 			ft_stack_enqueue(b, b_top);
 	}
