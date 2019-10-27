@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 13:57:45 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/27 13:03:56 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/27 13:09:42 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	main(int ac, char **av)
 		{
 			while (get_next_line(1, &buffer))
 			{
-				last_command = parse_commands(c, buffer);
+				if (!parse_commands(c, buffer, &last_command))
+					return (ps_fatal_error(c));
 				if ((c->options & SLOW) > 0)
 					if (update_stacks(c))
 						break ;
@@ -41,7 +42,7 @@ int	main(int ac, char **av)
 				print_status(check_stacks(c));
 		}
 		else
-			ft_printf("Error");
+			return (ps_fatal_error(c));
 		free_ps_context(c);
 	}
 	ft_printf("\n");

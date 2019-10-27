@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 13:52:11 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/27 13:03:39 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/27 13:07:19 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int			parse_options(t_ps_context *c, char ***data, int *len)
 	return (c->e.no = 1);
 }
 
-static int	is_valid(char *command)
+static int	is_valid(char *command, int *c)
 {
 	int	cmd;
 	int	i;
@@ -96,7 +96,8 @@ static int	is_valid(char *command)
 			&& cmd != ('u' + 'u' + 'a') && cmd != ('u' + 'u' + 'b')
 			&& cmd != ('u' + 'u' + 'u'))
 		return (0);
-	return (cmd);
+	*c = cmd;
+	return (1);
 }
 
 int			parse_commands(t_ps_context *c, char *data)
@@ -120,7 +121,7 @@ int			parse_commands(t_ps_context *c, char *data)
 		}
 		free_tab(tab);
 	}
-	else if ((last_cmd = is_valid(data)))
+	else if (is_valid(data, &last_cmd))
 		ps_stack_enqueue(c->commands, last_cmd);
 	return (last_cmd);
 }
