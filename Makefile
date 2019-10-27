@@ -6,7 +6,7 @@
 #    By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/29 17:20:30 by pheilbro          #+#    #+#              #
-#    Updated: 2019/10/27 12:30:58 by pheilbro         ###   ########.fr        #
+#    Updated: 2019/10/27 13:21:54 by pheilbro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,14 +32,14 @@ PS_SRC		= main
 PS_OBJ		= $(patsubst %, $(OBJ_DIR)/%.o, \
 			  $(patsubst %, $(PS_DIR)/%, $(PS_SRC)))
 
-C_SRC		= check init main parse print update
+C_SRC		= check init main parse print update error
 C_OBJ		= $(patsubst %, $(OBJ_DIR)/%.o, \
 			  $(patsubst %, $(C_DIR)/%, $(C_SRC)))
 
 UTIL_SRC	= push rotate reverse_rotate swap
 PS_STACK	= ps_stack_init ps_stack_is_empty ps_stack_enqueue \
 			  ps_stack_pop ps_stack_peek ps_stack_push ps_stack_get_next \
-			  ps_stack_del ps_stack_drop ps_stack_get_prev
+			  ps_stack_del ps_stack_drop ps_stack_get_prev ps_stack_contains
 UTIL_OBJ	= $(patsubst %, $(OBJ_DIR)/%.o, \
 			  $(patsubst %, $(UTIL_DIR)/%, \
 			  $(patsubst %, ps_stack/%, $(PS_STACK)) \

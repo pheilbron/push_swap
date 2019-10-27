@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 13:13:07 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/27 12:23:11 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/27 13:15:50 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int		init_stack(t_ps_stack *a, char **data, int len);
 int		parse_options(t_ps_context *c, char ***data, int *len);
-int		parse_commands(t_ps_context *c, char *data);
+int		parse_commands(t_ps_context *c, char *data, int *last_command);
 int		check_stacks(t_ps_context *c);
 int		update_stacks(t_ps_context *c);
 void	print_stacks(t_ps_context *c, int last_command);

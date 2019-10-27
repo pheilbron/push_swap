@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 13:52:11 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/27 13:07:19 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/27 13:16:57 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static int	is_valid(char *command, int *c)
 	return (1);
 }
 
-int			parse_commands(t_ps_context *c, char *data)
+int			parse_commands(t_ps_context *c, char *data, int *last_command)
 {
 	int		last_cmd;
 	char	**tab;
@@ -113,15 +113,17 @@ int			parse_commands(t_ps_context *c, char *data)
 		i = 0;
 		while (tab[i])
 		{
-			if ((last_cmd = is_valid(data)))
+			if (is_valid(data, &last_cmd))
 				ps_stack_enqueue(c->commands, last_cmd);
 			else
 				return (free_tab(tab));
 			i++;
 		}
 		free_tab(tab);
+		*last_command = last_cmd;
 	}
 	else if (is_valid(data, &last_cmd))
 		ps_stack_enqueue(c->commands, last_cmd);
-	return (last_cmd);
+	*last_command = last_cmd;
+	return (1);
 }
