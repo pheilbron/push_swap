@@ -6,13 +6,13 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 12:36:08 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/24 20:35:20 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/27 13:04:17 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "utils.h"
-#include "ft_stack.h"
+#include "ps_stack.h"
 
 static int	execute_command(t_ps_context *c, int cmd)
 {
@@ -45,8 +45,11 @@ static int	execute_command(t_ps_context *c, int cmd)
 
 int			update_stacks(t_ps_context *c)
 {
-	while (!ft_stack_is_empty(c->commands))
-		if (!execute_command(c, *(int *)ft_stack_pop(c->commands)))
-			return (0);
+	int	cmd;
+
+	while (!ps_stack_is_empty(c->commands))
+		if (ps_stack_pop(c->commands, &cmd))
+			if (!execute_command(c, cmd))
+				return (0);
 	return (1);
 }

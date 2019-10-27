@@ -6,38 +6,32 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 13:42:58 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/24 20:38:09 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/27 12:56:37 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "ft_stack.h"
+#include "ps_stack.h"
 
-void	ra(t_stack *a)
+void	ra(t_ps_stack *a)
 {
-	void	*a_top;
+	int	a_top;
 
 	if (a->size > 1)
-	{
-		a_top = ft_stack_pop(a);
-		if (a_top)
-			ft_stack_enqueue(a, a_top);
-	}
+		if (ps_stack_pop(a, &a_top))
+			ps_stack_enqueue(a, a_top);
 }
 
-void	rb(t_stack *b)
+void	rb(t_ps_stack *b)
 {
-	void	*b_top;
+	int	b_top;
 
 	if (b->size > 1)
-	{
-		b_top = ft_stack_pop(b);
-		if (b_top)
-			ft_stack_enqueue(b, b_top);
-	}
+		if (ps_stack_pop(b, &b_top))
+			ps_stack_enqueue(b, b_top);
 }
 
-void	rr(t_stack *a, t_stack *b)
+void	rr(t_ps_stack *a, t_ps_stack *b)
 {
 	ra(a);
 	rb(b);

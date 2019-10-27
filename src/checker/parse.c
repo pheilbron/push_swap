@@ -6,25 +6,26 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 13:52:11 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/25 13:41:51 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/27 13:03:39 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "ps_context.h"
 #include "ps_options.h"
+#include "ps_stack.h"
 #include "ft_string.h"
 #include "ft_error.h"
 
 t_ps_option		g_options_tab[] =
 {
-    {'c', _C, "color"},
-    {'d', _D, "debug"},
-    {'i', _I, "input-file="},
-    {'o', _O, "output-file="},
-    {'v', _V, "visual"},
-    {'x', _X, "compact"},
-    {0, 0, 0}
+	{'c', _C, "color"},
+	{'d', _D, "debug"},
+	{'i', _I, "input-file="},
+	{'o', _O, "output-file="},
+	{'v', _V, "visual"},
+	{'x', _X, "compact"},
+	{0, 0, 0}
 };
 
 static int	set_ps_option(t_ps_context *c, char op)
@@ -89,8 +90,7 @@ static int	is_valid(char *command)
 	i = -1;
 	while (command[++i])
 		cmd += command[i] == 'r' ? 'u' : command[i];
-
-	if (cmd != ('s' + 'a') && cmd != ('s' + 'b') && cmd != ('s' + 's') 
+	if (cmd != ('s' + 'a') && cmd != ('s' + 'b') && cmd != ('s' + 's')
 			&& cmd != ('p' + 'a') && cmd != ('p' + 'b') && cmd != ('u' + 'a')
 			&& cmd != ('u' + 'b') && cmd != ('u' + 'u')
 			&& cmd != ('u' + 'u' + 'a') && cmd != ('u' + 'u' + 'b')
@@ -113,7 +113,7 @@ int			parse_commands(t_ps_context *c, char *data)
 		while (tab[i])
 		{
 			if ((last_cmd = is_valid(data)))
-				ft_stack_enqueue(c->commands, &last_cmd);
+				ps_stack_enqueue(c->commands, last_cmd);
 			else
 				return (free_tab(tab));
 			i++;
@@ -121,6 +121,6 @@ int			parse_commands(t_ps_context *c, char *data)
 		free_tab(tab);
 	}
 	else if ((last_cmd = is_valid(data)))
-		ft_stack_enqueue(c->commands, &last_cmd);
+		ps_stack_enqueue(c->commands, last_cmd);
 	return (last_cmd);
 }

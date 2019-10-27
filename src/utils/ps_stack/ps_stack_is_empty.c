@@ -6,11 +6,11 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:46:26 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/25 15:46:35 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/27 12:31:25 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stack.h"
+#include "ps_stack.h"
 
 int	ps_stack_is_empty(t_ps_stack *stack)
 {

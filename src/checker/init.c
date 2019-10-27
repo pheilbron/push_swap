@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 21:20:35 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/25 15:54:16 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/27 12:22:07 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,22 @@
 #include "ft_string.h"
 #include "ft_ctype.h"
 
-static int	is_valid_arg(char *s)
+static int	is_valid_arg(char *s, int *n)
 {
 	int			i;
 	long long	num;
 
 	i = 0;
 	while (s[i])
-	{
-		if (!ft_isdigit(s[i]))
+		if (!ft_isdigit(s[i++]))
 			return (0);
-		i++;
-	}
 	if ((num = ft_atoll(s)) > INT_MAX || num < INT_MIN)
 		return (0);
-	return (num);
+	*n = num;
+	return (1);
 }
 
-static int	is_valid_args(t_stack *a, char *s)
+static int	is_valid_args(t_ps_stack *a, char *s)
 {
 	char	**tab;
 	int		i;
@@ -45,8 +43,8 @@ static int	is_valid_args(t_stack *a, char *s)
 	i = 0;
 	while (tab[i])
 	{
-		if ((n = is_valid_arg(tab[i])))
-			ft_stack_enqueue(a, n);
+		if (is_valid_arg(tab[i], &n))
+			ps_stack_enqueue(a, n);
 		else
 			return (free_tab(tab));
 		i++;
@@ -54,8 +52,8 @@ static int	is_valid_args(t_stack *a, char *s)
 	free_tab(tab);
 	return (1);
 }
-#include <stdio.h>
-int			init_stack(t_stack *a, char **data, int len)
+
+int			init_stack(t_ps_stack *a, char **data, int len)
 {
 	int	i;
 	int	n;
@@ -65,17 +63,10 @@ int			init_stack(t_stack *a, char **data, int len)
 		return (INV_ARG);
 	while (i < len)
 	{
-		if ((n = is_valid_arg(data[i])))
-			ft_stack_enqueue(a, (void *)n);
+		if (is_valid_arg(data[i], &n))
+			ps_stack_enqueue(a, n);
 		else
 			return (INV_ARG);
-		t_dl_node	*n;
-		n = a->top;
-		while (n)
-		{
-			printf("%d\n", *(int *)n->content);
-			n = ft_stack_get_next(n);
-		}
 		i++;
 	}
 	return (1);
