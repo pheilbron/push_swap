@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 14:10:00 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/25 13:21:01 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/28 14:50:44 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,27 @@ void	print_status(uint8_t status)
 
 void	print_stacks(t_ps_context *c, int last_command)
 {
-	ft_printf("...%d%d\n", c->e.no, last_command);
+	int		max_len;
+	ps_node	*stack_a;
+	ps_node	*stack_b;
+
+	max_len = last_command;
+	max_len = ft_max(c->a->size, c->b->size);
+	stack_a = c->a->top;
+	stack_b = c->b->top;
+	while (max_len > 0)
+	{
+		ft_printf("% 9.d\t% 9.d\n",
+				max_len <= c->a->size ? stack_a->content : 0,
+				max_len <= c->b->size ? stack_b->content : 0);
+		if (max_len <= c->a->size)
+			stack_a = ps_stack_get_next(stack_a);
+		if (max_len <= c->b->size)
+			stack_b = ps_stack_get_next(stack_b);
+		max_len--;
+	}
+	ft_printf("---------\t---------\n");
+	ft_printf(" STACK A \t STACK B\n");
 }
 
 //static char	*get_spacing(t_ps_context *c)
