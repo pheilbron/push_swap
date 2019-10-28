@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:42:48 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/27 12:52:31 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/28 10:27:27 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@
 void	ps_stack_del(t_ps_stack *stack)
 {
 	t_ps_node	*n;
-	t_ps_node	*prev;
 
-	n = stack->bottom;
-	prev = ps_stack_get_prev(n);
-	while (n)
+	while (stack->bottom != stack->top)
 	{
+		n = stack->bottom;
+		stack->bottom = stack->bottom->prev;
+		stack->bottom->next = NULL;
 		free(n);
-		n = prev;
-		prev = ps_stack_get_prev(prev);
+		n = NULL;
 	}
 	free(stack);
 }

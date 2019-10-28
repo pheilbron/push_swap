@@ -1,3 +1,7 @@
+#include "ps_context.h"
+#include "ps_stack.h"
+#include "ft_printf.h"
+
 void	print_all_stacks(t_ps_context *c)
 {
 	t_ps_node	*n;

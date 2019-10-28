@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:47:26 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/25 15:53:06 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/28 13:26:36 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	ps_stack_push(t_ps_stack *stack, int content)
 			stack->bottom = new;
 		}
 		stack->top = new;
+		stack->size++;
 	}
 	return (content);
 }

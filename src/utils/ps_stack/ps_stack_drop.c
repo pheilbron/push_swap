@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:43:29 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/27 12:53:08 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/28 13:26:01 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	ps_stack_drop(t_ps_stack *stack, int *n)
 	if (!(stack->bottom))
 		stack->top = NULL;
 	free(temp);
+	stack->size--;
 	return (1);
 }

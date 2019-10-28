@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:01:20 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/24 20:14:54 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/28 10:35:23 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define SORTED 64
 
-# define INV_ARG -1
+# define INV_ARG 0
 
 typedef struct	s_ps_option
 {

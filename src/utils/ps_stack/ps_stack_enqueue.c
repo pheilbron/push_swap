@@ -6,7 +6,7 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:44:51 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/25 15:52:37 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/10/28 13:25:44 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	ps_stack_enqueue(t_ps_stack *stack, int content)
 			new->prev = stack->bottom;
 		}
 		stack->bottom = new;
+		stack->size++;
 	}
 }
