@@ -6,16 +6,19 @@
 /*   By: pheilbro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:39:15 by pheilbro          #+#    #+#             */
-/*   Updated: 2019/10/27 13:22:24 by pheilbro         ###   ########.fr       */
+/*   Updated: 2019/11/03 12:35:23 by pheilbro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PS_STACK_H
 # define PS_STACK_H
 
+# include <stdint.h>
+
 typedef struct	s_ps_node
 {
 	int					content;
+	uint8_t				type;
 	struct s_ps_node	*prev;
 	struct s_ps_node	*next;
 }				t_ps_node;
